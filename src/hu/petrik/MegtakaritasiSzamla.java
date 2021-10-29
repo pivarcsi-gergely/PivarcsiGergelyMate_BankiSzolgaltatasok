@@ -30,4 +30,9 @@ public class MegtakaritasiSzamla extends Szamla{
     public void kamatJovairas(){
         aktualisEgyenleg += (aktualisEgyenleg*kamat);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Megtakarítási számla { " + super.toString() + "; kamat: %.1f }", kamat);
+    }
 }

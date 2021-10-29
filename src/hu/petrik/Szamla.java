@@ -18,10 +18,16 @@ public class Szamla extends BankiSzolgaltatas{
     }
 
     public boolean kivesz(int osszeg){
+        aktualisEgyenleg -= osszeg;
         return true;
     }
 
     public Kartya ujKartya(String kartyaszam){
         return ujKartya(kartyaszam); // visszamegyek erre mert nem értem mit kell itt csinálni
+    }
+
+    @Override
+    public String toString() {
+        return String.format(super.toString() + "; aktuális egyenleg: %d", getAktualisEgyenleg());
     }
 }

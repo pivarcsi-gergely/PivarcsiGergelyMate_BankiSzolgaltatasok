@@ -21,4 +21,9 @@ public class HitelSzamla extends Szamla {
             return true;
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Hitel számla { " + super.toString() + "; hitelkeret: %d }", getHitelKeret());
+    }
 }

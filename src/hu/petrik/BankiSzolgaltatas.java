@@ -11,4 +11,9 @@ public class BankiSzolgaltatas {
     public Tulajdonos getTulajdonos() {
         return tulajdonos;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Tulajdonos: %s", getTulajdonos().getNev());
+    }
 }

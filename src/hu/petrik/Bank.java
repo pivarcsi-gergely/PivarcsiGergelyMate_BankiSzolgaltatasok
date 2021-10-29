@@ -7,8 +7,9 @@ public class Bank {
     private List<Szamla> szamlaLista;
 
 
-    public Bank(List<Szamla> szamlaLista) {
-        this.szamlaLista = szamlaLista;
+    public Bank(List<Szamla> szamlaLista, int listaMeret) {
+        this.szamlaLista = new ArrayList<>(listaMeret);
+
     }
 
     public Szamla szamlanyitas(int hitelKeret, Tulajdonos tulajdonos){
@@ -46,9 +47,14 @@ public class Bank {
         long osszHitelKeret = 0;
 
         for (int i = 0; i < szamlaLista.size(); i++) {
-            osszHitelKeret += szamlaLista.get(i).
+            osszHitelKeret += hitelSzamlaLista.get(i).getHitelKeret();
         }
 
-        return 0;
+        return osszHitelKeret;
+    }
+
+    @Override
+    public String toString() {
+        return szamlaLista.toString();
     }
 }
