@@ -22,8 +22,10 @@ public class Szamla extends BankiSzolgaltatas{
         return true;
     }
 
-    public Kartya ujKartya(String kartyaszam){
-        return ujKartya(kartyaszam); // visszamegyek erre mert nem értem mit kell itt csinálni
+    public Kartya ujKartya(Tulajdonos tulajdonos, Szamla szamla, String kartyaszam){
+        Kartya k = new Kartya(tulajdonos, szamla, kartyaszam);
+
+        return k;
     }
 
     @Override

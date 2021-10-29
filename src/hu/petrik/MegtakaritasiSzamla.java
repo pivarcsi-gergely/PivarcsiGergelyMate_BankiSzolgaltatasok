@@ -19,20 +19,22 @@ public class MegtakaritasiSzamla extends Szamla{
     }
 
     public boolean kivesz(int osszeg){
-        if (getAktualisEgyenleg() < osszeg){
+        if (aktualisEgyenleg < osszeg){
+            System.out.println("Kisebb az aktuális egyenleg, mint az összeg, ami kivevésre kerülne, ezért a kivétel sikertelen lett.");
             return false;
         }
         else{
+            aktualisEgyenleg -= osszeg;
             return true;
         }
     }
 
     public void kamatJovairas(){
-        aktualisEgyenleg += (aktualisEgyenleg*kamat);
+        aktualisEgyenleg += (aktualisEgyenleg*(kamat/100));
     }
 
     @Override
     public String toString() {
-        return String.format("Megtakarítási számla { " + super.toString() + "; kamat: %.1f }", kamat);
+        return String.format("Megtakarítási számla { " + super.toString() + "; kamat: %.2f }", kamat);
     }
 }

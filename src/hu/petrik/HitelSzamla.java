@@ -14,10 +14,12 @@ public class HitelSzamla extends Szamla {
     }
 
     public boolean kivesz(int osszeg) {
-        if (hitelKeret < osszeg){
+        if (aktualisEgyenleg < osszeg){
+            System.out.println("Kisebb az aktuális egyenleg, mint az összeg, ami kivevésre kerülne, ezért a kivétel sikertelen lett.");
             return false;
         }
         else{
+            aktualisEgyenleg -= osszeg;
             return true;
         }
     }

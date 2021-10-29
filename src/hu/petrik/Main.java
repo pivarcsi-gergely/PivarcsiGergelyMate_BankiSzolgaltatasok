@@ -20,7 +20,6 @@ public class Main {
         MegtakaritasiSzamla mtSz1 = new MegtakaritasiSzamla(t1, 15.4);
 
         Kartya k1 = new Kartya(t1, sz1, "1234");
-        //sz1.ujKartya("2345");
 
         List<Szamla> szamlaLista = new ArrayList<>();
         Bank b1 = new Bank(szamlaLista, 10);
@@ -35,6 +34,10 @@ public class Main {
 
         mtSz1.befizet(15000);
 
+        hSz1.kivesz(10001);
+        mtSz1.kivesz(15001);
+        mtSz1.setKamat(16);
+        mtSz1.kamatJovairas();
 
         szamlaLista.add(sz1);
         szamlaLista.add(sz2);
@@ -46,5 +49,14 @@ public class Main {
         for (Szamla elem: szamlaLista) {
             System.out.println(elem);
         }
+
+        System.out.println("\n" + k1);
+
+        System.out.println(sz2.ujKartya(t2, sz2, "4567"));
+
+
+
+
+
      }
 }

@@ -18,4 +18,9 @@ public class Kartya extends BankiSzolgaltatas{
     public boolean vasarlas(int osszeg){
         return true;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Kártya { %s; kártya szám: %s}", super.toString(), getKartyaSzam());
+    }
 }
