@@ -21,6 +21,6 @@ public class Kartya extends BankiSzolgaltatas{
 
     @Override
     public String toString() {
-        return String.format("Kártya { %s; kártya szám: %s}", super.toString(), getKartyaSzam());
+        return String.format("Kártya { %s; aktuális egyenleg: %d; kártya szám: %s}", super.toString(), szamla.getAktualisEgyenleg(), getKartyaSzam());
     }
 }

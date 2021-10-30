@@ -52,7 +52,7 @@ public class Main {
 
         System.out.println("\n" + k1);
 
-        System.out.println(sz2.ujKartya(t2, sz2, "4567"));
+        System.out.println(sz2.ujKartya("4567"));
 
 
 
