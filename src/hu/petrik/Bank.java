@@ -5,49 +5,62 @@ import java.util.List;
 
 public class Bank {
     private List<Szamla> szamlaLista;
+    private int listaMeret;
 
 
-    public Bank(List<Szamla> szamlaLista, int listaMeret) {
+    public Bank() {
         this.szamlaLista = new ArrayList<>(listaMeret);
 
     }
 
     public Szamla szamlanyitas(int hitelKeret, Tulajdonos tulajdonos){
-        HitelSzamla ht = new HitelSzamla(tulajdonos, hitelKeret);
+        Szamla szamlaHelyettesito;
 
-        return ht;
+        if (hitelKeret == 0){
+            szamlaHelyettesito = new MegtakaritasiSzamla(tulajdonos);
+        }
+        else{
+            szamlaHelyettesito = new HitelSzamla(tulajdonos, hitelKeret);
+        }
+
+        szamlaLista.add(szamlaHelyettesito);
+        return szamlaHelyettesito;
+    }
+
+    public int getListaMeret() {
+        return listaMeret;
+    }
+
+    public void setListaMeret(int listaMeret) {
+        this.listaMeret = listaMeret;
     }
 
     public int getOsszegyenleg(Tulajdonos tulajdonos) {
         int osszEgyenleg = 0;
-        if (szamlaLista.contains(tulajdonos)){
-            for (int i = 0; i < szamlaLista.size(); i++) {
-                osszEgyenleg += szamlaLista.get(i).aktualisEgyenleg;
+        for (int i = 0; i < szamlaLista.size(); i++) {
+            if (szamlaLista.get(i).getTulajdonos() == tulajdonos){
+                osszEgyenleg += szamlaLista.get(i).getAktualisEgyenleg();
             }
         }
         return osszEgyenleg;
     }
 
-    public Szamla LegnagyobbEgyenleguSzamla(Tulajdonos tulajdonos){
+    public Szamla getLegnagyobbEgyenleguSzamla(Tulajdonos tulajdonos){
         Szamla maxSzamla = new Szamla(tulajdonos);
-
-        if (szamlaLista.contains(tulajdonos)){
-            for (int i = 0; i < szamlaLista.size(); i++) {
-                if (maxSzamla.getAktualisEgyenleg() < szamlaLista.get(i).getAktualisEgyenleg()){
-                    maxSzamla.equals(szamlaLista.get(i));
-                }
+        for (int i = 0; i < szamlaLista.size(); i++) {
+            if (maxSzamla.getAktualisEgyenleg() < szamlaLista.get(i).getAktualisEgyenleg()){
+                maxSzamla.aktualisEgyenleg = szamlaLista.get(i).getAktualisEgyenleg();
             }
         }
         return maxSzamla;
     }
 
     public long getOsszhitelkeret(){
-        List<HitelSzamla> hitelSzamlaLista = new ArrayList<>();
 
         long osszHitelKeret = 0;
 
         for (int i = 0; i < szamlaLista.size(); i++) {
-            osszHitelKeret += hitelSzamlaLista.get(i).getHitelKeret();
+            osszHitelKeret += szamlaLista.get(i).getHitelKeret();
         }
 
         return osszHitelKeret;
@@ -55,6 +68,10 @@ public class Bank {
 
     @Override
     public String toString() {
-        return szamlaLista.toString();
+        String egeszListaSzoveg = "";
+        for (Szamla elem : szamlaLista) {
+            egeszListaSzoveg += elem + "\n";
+        }
+        return egeszListaSzoveg;
     }
 }

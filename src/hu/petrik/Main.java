@@ -17,12 +17,13 @@ public class Main {
         HitelSzamla hSz1 = new HitelSzamla(t2, 200000);
         HitelSzamla hSz2 = new HitelSzamla(t3, 1000000);
 
-        MegtakaritasiSzamla mtSz1 = new MegtakaritasiSzamla(t1, 15.4);
+        MegtakaritasiSzamla mtSz1 = new MegtakaritasiSzamla(t1);
 
         Kartya k1 = new Kartya(t1, sz1, "1234");
 
-        List<Szamla> szamlaLista = new ArrayList<>();
-        Bank b1 = new Bank(szamlaLista, 10);
+
+        Bank b1 = new Bank();
+        b1.setListaMeret(15);
 
         sz1.befizet(100000);
         sz2.befizet(10000);
@@ -39,24 +40,22 @@ public class Main {
         mtSz1.setKamat(16);
         mtSz1.kamatJovairas();
 
-        szamlaLista.add(sz1);
-        szamlaLista.add(sz2);
-        szamlaLista.add(sz3);
-        szamlaLista.add(hSz1);
-        szamlaLista.add(hSz2);
-        szamlaLista.add(mtSz1);
+        b1.szamlanyitas(0, t1).befizet(70000);
+        b1.szamlanyitas(50000, t2).befizet(40000);
+        b1.szamlanyitas(50000, t1).befizet(50000);
 
-        for (Szamla elem: szamlaLista) {
-            System.out.println(elem);
-        }
+
+
+        System.out.println(b1);
+
 
         System.out.println("\n" + k1);
-
         System.out.println(sz2.ujKartya("4567"));
 
 
 
-
-
+        System.out.println("Összegyenlege " + t1.getNev() + " tulajdonosnak: " + b1.getOsszegyenleg(t1) + " Ft");
+        System.out.println("Legnagyobb egyenlegű számlája " + t1.getNev() + " nevű tulajdonosnak: " + b1.getLegnagyobbEgyenleguSzamla(t1) + " Ft");
+        System.out.println(b1.getOsszhitelkeret());
      }
 }
