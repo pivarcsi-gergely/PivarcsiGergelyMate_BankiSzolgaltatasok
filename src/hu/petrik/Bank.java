@@ -6,11 +6,11 @@ import java.util.List;
 public class Bank {
     private List<Szamla> szamlaLista;
     private int listaMeret;
+    private int osszHitelKeret;
 
 
     public Bank() {
         this.szamlaLista = new ArrayList<>(listaMeret);
-
     }
 
     public Szamla szamlanyitas(int hitelKeret, Tulajdonos tulajdonos){
@@ -21,6 +21,7 @@ public class Bank {
         }
         else{
             szamlaHelyettesito = new HitelSzamla(tulajdonos, hitelKeret);
+            osszHitelKeret += hitelKeret;
         }
 
         szamlaLista.add(szamlaHelyettesito);
@@ -56,13 +57,6 @@ public class Bank {
     }
 
     public long getOsszhitelkeret(){
-
-        long osszHitelKeret = 0;
-
-        for (int i = 0; i < szamlaLista.size(); i++) {
-            osszHitelKeret += szamlaLista.get(i).getHitelKeret();
-        }
-
         return osszHitelKeret;
     }
 
